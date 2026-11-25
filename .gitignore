@@ -1,0 +1,10 @@
+# Credenciales reales de la base de datos
+config/db.local.php
+
+# Fotos subidas por los usuarios (se conserva la carpeta)
+archivos/*
+!archivos/.htaccess
+!archivos/.gitkeep
+
+.DS_Store
+Thumbs.db

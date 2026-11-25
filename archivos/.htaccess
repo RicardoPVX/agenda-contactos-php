@@ -1,0 +1,5 @@
+# Carpeta de fotos subidas: no listar archivos y nunca ejecutar scripts.
+Options -Indexes
+<FilesMatch "\.(php\d?|phtml|phar|pl|py|cgi|sh)$">
+    Require all denied
+</FilesMatch>

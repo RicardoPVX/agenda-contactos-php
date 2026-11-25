@@ -1,0 +1,249 @@
+/* =============================================================
+   Agenda de Contactos · Hoja de estilos
+   ============================================================= */
+
+:root {
+    --fondo:        #f4f5f7;
+    --superficie:   #ffffff;
+    --texto:        #1d2330;
+    --sutil:        #6b7280;
+    --borde:        #e3e6eb;
+    --primario:     #2f5bea;
+    --primario-osc: #2449c4;
+    --primario-sua: #eaf0ff;
+    --peligro:      #d23b3b;
+    --peligro-sua:  #fdecec;
+    --exito:        #1f8a4c;
+    --exito-sua:    #e7f6ee;
+    --radio:        10px;
+    --sombra:       0 1px 2px rgba(16, 24, 40, .06), 0 1px 3px rgba(16, 24, 40, .08);
+}
+
+* { box-sizing: border-box; }
+
+body {
+    margin: 0;
+    font-family: "Inter", system-ui, -apple-system, "Segoe UI", Roboto, sans-serif;
+    font-size: 15px;
+    line-height: 1.5;
+    color: var(--texto);
+    background: var(--fondo);
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+}
+
+a { color: var(--primario); text-decoration: none; }
+a:hover { text-decoration: underline; }
+
+h1 { font-size: 1.6rem; margin: 0 0 .25rem; line-height: 1.2; }
+
+.sutil { color: var(--sutil); }
+.req   { color: var(--peligro); }
+
+.contenedor {
+    width: 100%;
+    max-width: 980px;
+    margin: 0 auto;
+    padding: 28px 16px 48px;
+    flex: 1;
+}
+
+/* ---------- Barra / menú común ---------- */
+.barra {
+    background: var(--superficie);
+    border-bottom: 1px solid var(--borde);
+    position: sticky;
+    top: 0;
+    z-index: 10;
+}
+.barra-interior {
+    max-width: 980px;
+    margin: 0 auto;
+    padding: 12px 16px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 12px;
+    flex-wrap: wrap;
+}
+.marca {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    font-weight: 700;
+    color: var(--texto);
+}
+.marca:hover { text-decoration: none; }
+.marca-icono {
+    display: grid;
+    place-items: center;
+    width: 32px;
+    height: 32px;
+    border-radius: 8px;
+    background: var(--primario);
+    color: #fff;
+}
+.menu { display: flex; align-items: center; gap: 8px; }
+.menu > a:not(.boton) {
+    padding: 8px 12px;
+    border-radius: 8px;
+    color: var(--sutil);
+    font-weight: 500;
+}
+.menu > a:not(.boton):hover { background: var(--fondo); text-decoration: none; }
+.menu > a.activo:not(.boton) { color: var(--primario); background: var(--primario-sua); }
+
+/* ---------- Botones ---------- */
+.boton {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 6px;
+    padding: 9px 16px;
+    border: 1px solid var(--borde);
+    border-radius: 8px;
+    background: var(--superficie);
+    color: var(--texto);
+    font: inherit;
+    font-weight: 500;
+    cursor: pointer;
+    white-space: nowrap;
+    transition: background-color .15s, border-color .15s;
+}
+.boton:hover { background: var(--fondo); text-decoration: none; }
+.boton-primario { background: var(--primario); border-color: var(--primario); color: #fff; }
+.boton-primario:hover { background: var(--primario-osc); border-color: var(--primario-osc); }
+.boton-peligro { color: var(--peligro); }
+.boton-peligro:hover { background: var(--peligro-sua); border-color: #f3c4c4; }
+.boton-peligro-solido { background: var(--peligro); border-color: var(--peligro); color: #fff; }
+.boton-peligro-solido:hover { background: #b32f2f; }
+.boton-chico { padding: 5px 10px; font-size: .85rem; }
+
+/* ---------- Tarjetas, alertas ---------- */
+.tarjeta {
+    background: var(--superficie);
+    border: 1px solid var(--borde);
+    border-radius: var(--radio);
+    box-shadow: var(--sombra);
+}
+.alerta {
+    padding: 12px 16px;
+    border-radius: 8px;
+    margin-bottom: 20px;
+    border: 1px solid transparent;
+}
+.alerta-exito { background: var(--exito-sua); color: var(--exito); border-color: #bfe5cf; }
+.alerta-error { background: var(--peligro-sua); color: var(--peligro); border-color: #f3c4c4; }
+
+/* ---------- Encabezado + buscador ---------- */
+.encabezado {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-end;
+    gap: 16px;
+    flex-wrap: wrap;
+    margin-bottom: 20px;
+}
+.encabezado p { margin: 0; }
+.buscador { display: flex; gap: 8px; flex: 1; max-width: 480px; min-width: 260px; }
+.buscador input { flex: 1; min-width: 0; }
+
+/* ---------- Tabla del listado ---------- */
+.tabla-envoltura { overflow-x: auto; }
+.tabla { width: 100%; border-collapse: collapse; }
+.tabla th, .tabla td { padding: 12px 16px; text-align: left; vertical-align: middle; }
+.tabla th {
+    font-size: .78rem;
+    text-transform: uppercase;
+    letter-spacing: .04em;
+    color: var(--sutil);
+    border-bottom: 1px solid var(--borde);
+}
+.tabla tbody tr + tr td { border-top: 1px solid var(--borde); }
+.tabla tbody tr:hover { background: #fafbfc; }
+.col-acciones { text-align: right !important; white-space: nowrap; }
+.col-acciones .boton + .boton { margin-left: 4px; }
+.col-tel { white-space: nowrap; }
+.persona { display: flex; align-items: center; gap: 12px; color: var(--texto); font-weight: 600; }
+
+/* ---------- Avatares ---------- */
+.avatar {
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    object-fit: cover;
+    background: var(--primario-sua);
+    flex-shrink: 0;
+}
+.avatar-md { width: 64px; height: 64px; }
+.avatar-lg { width: 96px; height: 96px; }
+.avatar-xl { width: 160px; height: 160px; border-radius: 16px; }
+
+/* ---------- Formulario ---------- */
+.formulario { padding: 24px; }
+.rejilla-2 { display: grid; grid-template-columns: 1fr 1fr; gap: 0 20px; }
+.campo { margin-bottom: 18px; }
+.campo label { display: block; font-weight: 600; margin-bottom: 6px; font-size: .9rem; }
+input[type="text"], input[type="tel"], input[type="email"], input[type="search"], textarea {
+    width: 100%;
+    padding: 9px 12px;
+    border: 1px solid #cfd4dc;
+    border-radius: 8px;
+    font: inherit;
+    color: var(--texto);
+    background: #fff;
+}
+textarea { resize: vertical; }
+input:focus, textarea:focus, .boton:focus-visible {
+    outline: none;
+    border-color: var(--primario);
+    box-shadow: 0 0 0 3px rgba(47, 91, 234, .18);
+}
+input[type="file"] { font: inherit; max-width: 100%; }
+.con-error input, .con-error textarea { border-color: var(--peligro); }
+.campo-error { color: var(--peligro); font-size: .85rem; margin: 6px 0 0; }
+.ayuda { color: var(--sutil); font-size: .82rem; margin: 6px 0 0; }
+.foto-campo { display: flex; align-items: center; gap: 16px; }
+
+.acciones { display: flex; justify-content: flex-end; gap: 10px; flex-wrap: wrap; margin-top: 8px; }
+.acciones-izq { justify-content: flex-start; margin-top: 24px; }
+.acciones-centro { justify-content: center; margin-top: 24px; }
+
+/* ---------- Detalle ---------- */
+.miga { margin: 0 0 16px; }
+.detalle { display: flex; gap: 32px; padding: 28px; align-items: flex-start; }
+.detalle-cuerpo { flex: 1; min-width: 0; }
+.datos { display: grid; grid-template-columns: 120px 1fr; gap: 12px 16px; margin: 20px 0 0; }
+.datos dt { color: var(--sutil); font-weight: 500; }
+.datos dd { margin: 0; overflow-wrap: anywhere; }
+
+/* ---------- Confirmación y vacío ---------- */
+.confirmacion, .vacio { text-align: center; padding: 40px 24px; }
+.confirmacion { max-width: 520px; margin: 24px auto 0; }
+.confirmacion h1 { margin-top: 16px; }
+.vacio p { margin: 0 0 16px; color: var(--sutil); }
+
+/* ---------- Pie ---------- */
+.pie {
+    text-align: center;
+    color: var(--sutil);
+    font-size: .85rem;
+    padding: 20px 16px;
+    border-top: 1px solid var(--borde);
+    background: var(--superficie);
+}
+
+/* ---------- Responsivo ---------- */
+@media (max-width: 720px) {
+    .rejilla-2 { grid-template-columns: 1fr; }
+    .solo-ancho { display: none; }
+    .detalle { flex-direction: column; align-items: center; text-align: center; }
+    .datos { grid-template-columns: 1fr; text-align: left; gap: 2px; }
+    .datos dd { margin-bottom: 10px; }
+    .acciones-izq { justify-content: center; }
+    .buscador { max-width: none; }
+    /* En celular se toca el nombre para abrir el detalle (Editar / Eliminar). */
+    .col-acciones { display: none; }
+    .tabla th, .tabla td { padding: 12px; }
+}
